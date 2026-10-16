@@ -9,7 +9,7 @@ export default definePrismaConfig({
     agents: [],
   },
   orm: ormConfig({
-    contract: "./src/prisma/contract.prisma",
+    contract: "./src/prisma/schema",
     db: {
       connection: process.env.DATABASE_URL!,
     },
