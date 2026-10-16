@@ -1,7 +1,6 @@
-node_modules/
-dist/
-.env
-/.alchemy
-/.prisma-composer
-migrations 
-migrations/
+node_modules
+node_modules
+.env 
+migrations
+dist
+.dist 
