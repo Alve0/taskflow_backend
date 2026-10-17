@@ -1,19 +1,13 @@
-import { createServer } from "node:http";
+import { app } from "./app";
+import { config } from "./config/config";
+import { prisma } from "./config/prisma";
 
-import { listUsers } from "./prisma/users";
+const server = () => {
+  app.listen(config.PORT, () => {
+    prisma.$connect().then(() => {
+      console.log(`server is running on port ${config.PORT}`);
+    });
+  });
+};
 
-const port = Number(process.env.PORT ?? 3000);
-
-createServer(async (_request, response) => {
-  try {
-    const users = await listUsers();
-    response.writeHead(200, { "content-type": "application/json" });
-    response.end(JSON.stringify({ users }));
-  } catch (error) {
-    console.error("Failed to query users:", error);
-    response.writeHead(500, { "content-type": "application/json" });
-    response.end(JSON.stringify({ error: "Could not query users yet." }));
-  }
-}).listen(port, "0.0.0.0", () => {
-  console.log(`Server running at http://localhost:${port}`);
-});
+server();

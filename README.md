@@ -1,36 +1,28 @@
 # taskflow_backend
 
-A minimal minimal app with Prisma 8 and Prisma Composer.
-
-## Run locally
+To install dependencies:
 
 ```bash
-bun run dev:composer
+bun install
 ```
 
-This builds the app and starts it with Composer. PostgreSQL projects get a local Prisma Postgres database and apply the committed migrations automatically.
-
-## Deploy
+To run:
 
 ```bash
-bun run deploy
+bun run dev
 ```
 
-The deploy script builds the framework output, provisions Prisma Postgres when selected, applies migrations, and deploys the app to Prisma Compute.
-
-The starter users are inserted idempotently from `src/prisma/seed.ts` on the first database query through the Composer service binding.
-
-
-## Prisma
-
-- Contract: `src/prisma/contract.prisma`
-- Prisma and Composer config: `prisma.config.ts`
-- Composer app: `module.ts` and `service.ts`
-
-After changing the contract, run:
+To build and start:
 
 ```bash
-bun run contract:emit
+bun run build
+bun run start
 ```
 
-To use the framework's development server directly, run `bun run dev`. This direct mode requires `DATABASE_URL`.
+To type check:
+
+```bash
+bun check
+```
+
+This project was created using `bun init` in bun v1.4.3. [Bun](https://bun.com) is a fast all-in-one JavaScript runtime.
